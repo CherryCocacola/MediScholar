@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 하나에 집중 둘에 하자! -->
+
    		<!-- 헤더 -->
     	<jsp:include page="../common/header.jsp" />
     	
