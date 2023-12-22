@@ -1,22 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../resources/css/global.css" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/member.css" />
-    <link href="https://fonts.cdnfonts.com/css/dinpro-medium" rel="stylesheet">
-    <title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.cdnfonts.com/css/dinpro-medium" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/global.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css" />
+	<!-- pageContext: 현재 요청에 대한 페이지 컨텍스트를 참조합니다. 주소창에 기재되어있는 정보
+		 contextPath: 현재 웹 애플리케이션의 컨텍스트 루트 경로를 나타냅니다. 예를 들어, 웹 애플리케이션이 http://localhost:8080/pubmed 에서 실행되고 있다면, contextPath는 /pubmed 임 -->
+	<title>Login</title>
 </head>
 <body>
-    <div class="login-container">
-
-        <section>
-            <main>
-                <a href="/" class="logo a-c ma-b-10"><img src="../resources/images/logo.png" alt="로고염" /></a>
-                
+	<div class="login-container">
+		<section>
+			<main>
+				<a href="/" class="logo a-c ma-b-10"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="로고염" /></a>
 			    <% if(Boolean.TRUE.equals(session.getAttribute("signUpSuccess"))) { %>
 				    <p class="sign-up-success ma-t-10 ma-b-10 col-robl a-c"><strong>Membership registration successful!</strong></p>
 				    <% session.removeAttribute("signUpSuccess"); %>
