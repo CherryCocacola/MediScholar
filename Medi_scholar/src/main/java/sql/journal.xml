@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.medi.pubmed.journal.JournalDao">
+<mapper namespace="sql.journal">
+
 	<select id="getJournalList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select jl.id as id,
 				jt.journal_nm as title,

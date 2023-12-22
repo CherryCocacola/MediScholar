@@ -3,9 +3,17 @@ package com.medi.pubmed.journal;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface JournalDao {
-	List<HashMap<String, Object>> getJournalList(HashMap<String, Object> param);
+@Component
+public class JournalDao {
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	public List<HashMap<String, Object>> getJournalList(HashMap<String, Object> param){
+		return sqlSession.selectList("getJournalList", param); 
+	}
 }

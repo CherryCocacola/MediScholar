@@ -6,7 +6,8 @@
     	<jsp:include page="../common/header.jsp" />
     	
         <section class="content">
-
+			
+			<!-- 테스트 -->
             <div class="tit-con clear">
                 <h2 class="f-l col-navy">Community</h2>
                 <div class="f-r ma-t-5">
