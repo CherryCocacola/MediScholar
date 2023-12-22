@@ -33,12 +33,12 @@ public class MediMemberController {
 	@GetMapping("signup")
 	public String signUp(HttpServletRequest req, ModelMap modelMap, @RequestParam HashMap<String, Object> param) {
 		List<HashMap<String, Object>> primaryList = medimembersvc.getpriList(param); // 학술지분류
-		// List<HashMap<String, Object>> nation = medimembersvc.getnation(param); // nation
-		// List<HashMap<String, Object>> job = medimembersvc.getjob(param); // job
+		List<HashMap<String, Object>> nation = medimembersvc.getnation(param); // nation
+		List<HashMap<String, Object>> job = medimembersvc.getjob(param); // job
 
 		modelMap.addAttribute("pri", primaryList); // 변수명 변경 (primaryList)
-		// modelMap.addAttribute("nat", nation);
-		// modelMap.addAttribute("job", job);
+		modelMap.addAttribute("nat", nation);
+		modelMap.addAttribute("job", job);
 		return "member/signUp";
 	}
 

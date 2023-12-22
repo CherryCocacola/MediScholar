@@ -32,16 +32,19 @@ public class MediMemberDAO {
 			return sqlSession.selectOne("checkEmailExistsForToken",email);
 			
 		}
+		//나라
 		public List<HashMap<String, Object>> getnation(HashMap<String, Object> param) {
 			return sqlSession.selectList("getnation",param);
 		}
+		//직업
 		public List<HashMap<String, Object>> getjob(HashMap<String, Object> param) {
 			return sqlSession.selectList("getjob",param);
 		}
-		
+		//세부분야
 		public List<HashMap<String, Object>> getsignList(String primary) {
 			return sqlSession.selectList("getsignList",primary);
 		}
+		//아이디check
 		public int isUserIdDuplicate(String userId) {
 			return sqlSession.selectOne("isUserIdDuplicate",userId);
 		}
