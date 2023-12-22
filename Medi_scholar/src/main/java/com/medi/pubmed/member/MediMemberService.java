@@ -14,12 +14,12 @@ public interface MediMemberService {
 	HashMap<String, Object> googleUserInfo(HashMap<String, Object> param);
 	//관심 주분야 목록 조회
 	List<HashMap<String, Object>> getpriList(HashMap<String, Object> param);
-
+	//나라 목록 조회
 	List<HashMap<String, Object>> getnation(HashMap<String, Object> param);
-
+	//직업 목록 조회
 	List<HashMap<String, Object>> getjob(HashMap<String, Object> param);
-
+	//세부 분야 조회
 	List<HashMap<String, Object>> getsignList(String primary);
-
+	//db 아이디유무
 	int isUserIdDuplicate(String userId);
 }
