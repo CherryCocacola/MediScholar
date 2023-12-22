@@ -17,7 +17,20 @@
 		   and userPw = sha2(#{userpw}, 256)
 	<!-- jsp와 #{}안에 단어를 맞춰준다 -->
 	</select>
-
+	<!-- 구글이메일 회원디비 유무 체크 -->
+	<select id="checkEmailExistsForToken" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(*)
+	from pubmed.tb_user_nt_01 tun 
+	where tun.user_email = #{email}
+	</select>
+	
+	<select id="googleUserInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	select tun.user_email as userId ,
+		   tun.user_nm as userNm	
+	from pubmed.tb_user_nt_01 tun 
+	where user_email = #{user_email}
+	</select>
+	
 	<insert id="insertUserInfo" parameterType="java.util.HashMap">
 		INSERT INTO pubmed.tb_user_nt_01(user_email, user_nm, user_pass,user_hometown, user_job, pri_field, sec_field)
 		VALUES (#{userid}, #{usernm}, pubmed.crypt(#{userpw}, pubmed.gen_salt('bf')), #{nation},#{job}, #{major}, #{interest})

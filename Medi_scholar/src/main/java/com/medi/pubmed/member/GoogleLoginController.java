@@ -94,7 +94,7 @@ public class GoogleLoginController {
 				 		resp.sendRedirect("/journal/journallist");
 	        		} else {
 	        			// 이메일이 존재하지 않으면 세션에 로그인 정보를 저장하지 않고 로그인 화면으로 리다이렉트
-	        			resp.sendRedirect("/journal/login");
+	        			resp.sendRedirect("/member/login");
 	        		}
 	 }
 }
