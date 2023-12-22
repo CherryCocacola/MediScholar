@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class JournalServiceImpl implements JournalService{
 
 	@Autowired
-	private JournalDao journalDao;
+	private JournalDAO journalDao;
 
 	public List<HashMap<String, Object>> getJournalList(HashMap<String, Object> param) {
 		return journalDao.getJournalList(param);
