@@ -29,16 +29,53 @@ public class MediMemberController {
 
 	@Autowired
 	private MediMemberService medimembersvc;
+	
+	@GetMapping("login")
+	public String login(HttpServletRequest req, ModelMap modelMap) {
+		return "member/login";
+	}
 
+	
+	@PostMapping("login")
+	public String loginChk(HttpServletRequest req, ModelMap modelMap, @RequestParam HashMap<String, Object> param) {
+
+		// userinfo 받아와서 hashmap에 저장하기
+		HashMap<String, Object> user = medimembersvc.getUserInfo(param);
+		if(user != null) {
+			HttpSession session = req.getSession();
+			// 세션값 저장
+			session.setAttribute("userId", user.get("userId"));
+			session.setAttribute("userNm", user.get("userNm"));
+			// 세션 잘 받았나 로그확인
+			logger.info("session Id : " + user.get("userId"));
+			logger.info("session Name : " + user.get("userNm"));
+
+		}
+		return "redirect:journallist";
+
+	}
+
+	// 로그아웃
+	@GetMapping("logout")
+	public String Logout(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		return ("redirect:/member/login");
+	}
+	
+	
+	
 	@GetMapping("signup")
 	public String signUp(HttpServletRequest req, ModelMap modelMap, @RequestParam HashMap<String, Object> param) {
 		List<HashMap<String, Object>> primaryList = medimembersvc.getpriList(param); // 학술지분류
-		// List<HashMap<String, Object>> nation = medimembersvc.getnation(param); // nation
-		// List<HashMap<String, Object>> job = medimembersvc.getjob(param); // job
+		List<HashMap<String, Object>> nation = medimembersvc.getnation(param); // nation
+		List<HashMap<String, Object>> job = medimembersvc.getjob(param); // job
 
 		modelMap.addAttribute("pri", primaryList); // 변수명 변경 (primaryList)
-		// modelMap.addAttribute("nat", nation);
-		// modelMap.addAttribute("job", job);
+		modelMap.addAttribute("nat", nation);
+		modelMap.addAttribute("job", job);
 		return "member/signUp";
 	}
 

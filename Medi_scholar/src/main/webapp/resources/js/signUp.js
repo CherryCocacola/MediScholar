@@ -103,3 +103,47 @@ function passCheck(){
 		document.querySelector("#passcheckmessage").innerText ='';
 	}
 }
+function loadInterest() {
+    let primary = document.getElementById('major').value;
+    console.log(primary);
+
+    fetch('/member/interest', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify({ primary: primary })
+    })
+    .then(response => response.json())
+    .then(iList => {
+    // Select Box에 데이터 채우기
+    fillSelectBox(iList);
+})
+.catch(error => console.error('Error:', error));
+}
+
+// Select Box 채우는 함수
+function fillSelectBox(iList) {
+    let selectBox = document.getElementById('interest');
+    iList.forEach(item => {
+        let option = document.createElement('option');
+        option.value = item.ci;
+        option.text = item.codeko;
+        selectBox.appendChild(option);
+    });
+}
+
+    function redirectToGoogle() {
+        // 서버로부터 reqUrl 주소를 가져오는 비동기 요청
+        fetch('/api/v1/oauth2/google', {
+            method: 'POST',
+        })
+        .then(response => response.text())
+        .then(reqUrl => {
+            // reqUrl로 이동
+            window.location.href = reqUrl;
+        })
+        .catch(error => {
+            console.error('Error fetching reqUrl:', error);
+        });
+    }

@@ -12,54 +12,51 @@ public class MediMemberServiceImpl implements MediMemberService{
 	@Autowired
 	private MediMemberDAO medimemberdao;
 	
-	@Override
 	//사용자정보
+	@Override
 	public HashMap<String, Object> getUserInfo(HashMap<String, Object> param) {
 		return medimemberdao.getUserInfo(param);
 	}
-
+	//회원 정보 추가
 	@Override
 	public void insertUserInfo(HashMap<String, Object> param) {
 		medimemberdao.insertUserInfo(param);
 	}
-
+	//구글 계정 토큰 확인
 	@Override
 	public int checkEmailExistsForToken(String email) {
-		// TODO Auto-generated method stub
-		return 0;
+		return medimemberdao.checkEmailExistsForToken(email);
 	}
-
+	//구글 계정 확인
 	@Override
 	public HashMap<String, Object> googleUserInfo(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
-		return null;
+		return medimemberdao.googleUserInfo(param);
 	}
-
+	//
+	@Override
+	public int isUserIdDuplicate(String userId) {
+		return medimemberdao.isUserIdDuplicate(userId);
+	}
+	//국가 선택지 목록
+	@Override
+	public List<HashMap<String, Object>> getnation(HashMap<String, Object> param) {
+		return medimemberdao.getnation(param);
+	}
+	//직업 선택지 목록
+	@Override
+	public List<HashMap<String, Object>> getjob(HashMap<String, Object> param) {
+		return medimemberdao.getjob(param);
+	}
+	//관심분야 선택지 목록 - 주분야
 	@Override
 	public List<HashMap<String, Object>> getpriList(HashMap<String, Object> param) {
 		return medimemberdao.getpriList(param);
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getnation(HashMap<String, Object> param) {
-		return null;
-	}
-
-	@Override
-	public List<HashMap<String, Object>> getjob(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<HashMap<String, Object>> getsignList(String primary) {
-		// TODO Auto-generated method stub
-		return null;
+		return medimemberdao.getsignList(primary);
 	}
 
-	@Override
-	public int isUserIdDuplicate(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 }
