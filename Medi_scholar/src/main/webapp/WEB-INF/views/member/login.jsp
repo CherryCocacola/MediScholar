@@ -33,7 +33,7 @@
                 <div class="hr-txt ma-t-20 ma-b-15">or sign in with email</div>
 
                 <div>
-                    <form action="/Member/LoginCheck" method="post">
+                    <form action="/member/login" method="post">
                         <div class="form-fields">
                             <fieldset>
                                 <label for="email">Your Email</label>
