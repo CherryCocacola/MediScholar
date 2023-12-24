@@ -51,7 +51,7 @@ public class MediMemberController {
 			logger.info("session Name : " + user.get("userNm"));
 
 		}
-		return "redirect:journallist";
+		return "redirect:/journal/journallist";
 
 	}
 
