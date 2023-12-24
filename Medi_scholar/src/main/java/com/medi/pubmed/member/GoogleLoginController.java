@@ -68,7 +68,7 @@ public class GoogleLoginController {
 	        ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
 	                map, GoogleInfResponse.class);
 	        String email=resultEntity2.getBody().getEmail();
-	        int emailExists = medimembersvc.checkEmailExistsForToken(email);
+	        int emailExists = medimembersvc.checkEmailExist(email);
 	        	       
 			if (emailExists == 1) {
 				param.put("user_email", email);

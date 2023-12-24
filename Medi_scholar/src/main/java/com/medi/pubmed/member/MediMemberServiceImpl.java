@@ -22,10 +22,10 @@ public class MediMemberServiceImpl implements MediMemberService{
 	public void insertUserInfo(HashMap<String, Object> param) {
 		medimemberdao.insertUserInfo(param);
 	}
-	//구글 계정 토큰 확인
+	//구글 이메일 db 유무
 	@Override
-	public int checkEmailExistsForToken(String email) {
-		return medimemberdao.checkEmailExistsForToken(email);
+	public int checkEmailExist(String email) {
+		return medimemberdao.checkEmailExist(email);
 	}
 	//구글 계정 확인
 	@Override
