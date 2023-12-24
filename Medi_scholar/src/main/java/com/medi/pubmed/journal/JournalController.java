@@ -22,8 +22,15 @@ public class JournalController {
 	@GetMapping("journallist")
 	public String getJournalList(@RequestParam HashMap<String, Object> param, HttpServletRequest req, ModelMap modelmap) {
 		
-		List<HashMap<String, Object>>jl = journalSvc.getJournalList(param);
+		List<HashMap<String, Object>> jl = journalSvc.getJournalList(param);
+		int count = journalSvc.getJournalCount(param);
+		
+		modelmap.addAttribute("jl", jl);
+		modelmap.addAttribute("count", count);
 		
 		return ("journal/journalSearch");
 	}
+	
+	
+	
 }

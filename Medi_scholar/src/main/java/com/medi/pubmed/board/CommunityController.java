@@ -24,6 +24,6 @@ public class CommunityController {
 		
 		List<HashMap<String, Object>>jl = communitySvc.getCommunityList(param);
 		
-		return ("journal/journalSearch");
+		return ("community/boardList");
 	}
 }

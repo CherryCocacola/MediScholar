@@ -10,4 +10,6 @@ public interface JournalService {
 	
 	List<HashMap<String, Object>> getJournalList(HashMap<String, Object> param);
 
+	int getJournalCount(HashMap<String, Object> param);
+
 }
