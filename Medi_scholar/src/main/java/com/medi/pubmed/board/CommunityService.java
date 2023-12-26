@@ -24,4 +24,6 @@ public interface CommunityService {
 	int delCommunity(Integer id);
 
 	List<HashMap<String, Object>> getReplyList(HashMap<String, Object> param);
+
+	int getReplyCount(HashMap<String, Object> param);
 }

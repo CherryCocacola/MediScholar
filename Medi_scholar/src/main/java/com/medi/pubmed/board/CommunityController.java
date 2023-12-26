@@ -1,5 +1,6 @@
 package com.medi.pubmed.board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,15 +42,11 @@ public class CommunityController {
 			HttpSession session = req.getSession();
 
 			// 세션에서 유저 정보 불러오기
-			String user_nm=(String) session.getAttribute("userNm");
-			String user_email=(String) session.getAttribute("userId");
-//			String user_pass=(String) session.getAttribute("user_pass");
-//			String comm_postid = (String) param.get("comm_postid");
+			String user_nm = (String) session.getAttribute("userNm");
+			String user_email = (String) session.getAttribute("userId");
 			
-			param.put("user_email",user_email);
-//			param.put("user_pass",user_pass);
-			param.put("user_nm",user_nm);
-//			param.put("postid", comm_postid);
+			param.put("user_email", user_email);
+			param.put("user_nm", user_nm);
 
 			// Logger으로 출력 확인
 			logger.info("list param: " + String.valueOf(param));
@@ -62,24 +59,32 @@ public class CommunityController {
 			if (totalCount % 10 != 0) {
 			    totalPages++;
 			}
-					
+			
+		    List<HashMap<String, Object>> replyWithList = new ArrayList<>();
+		    int count = communitySvc.getReplyCount(param);
+
+		    for (HashMap<String, Object> post : jl) {
+		    	
+		        HashMap<String, Object> postWithReplyCount = new HashMap<>(post);
+		        param.put("comm_postid", post.get("comm_postid"));
+		        int replyCount = communitySvc.getReplyCount(param);
+		        postWithReplyCount.put("replyCount", replyCount);
+		        replyWithList.add(postWithReplyCount);
+		    }
+			
 			modelmap.addAttribute("totalPages", totalPages);
 			modelmap.addAttribute("totalCount", totalCount);
 			modelmap.addAttribute("page", Integer.valueOf(page));
-			modelmap.addAttribute("cl", jl);
-
-
+			modelmap.addAttribute("replyCount", count);
+			
+			modelmap.addAttribute("cl", replyWithList);
 		
 		return ("community/boardList");
 	}
 
 	private void 임시로그인(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		//String userId = (String) session.getAttribute("userId");
-		//String userNm = (String) session.getAttribute("userNm");
-		
-		//logger.info("userNm"+userNm);
-		//logger.info("userId"+userId);
+
 		//임시 로그인
 		session.setAttribute("userNm", "주수빈");
 		session.setAttribute("userId", "subin3322@naver.com");
@@ -125,19 +130,19 @@ public class CommunityController {
 		System.out.println("memo : "+param.get("updateContent"));
 		System.out.println("user_nm : "+param.get("user_nm"));
 		System.out.println("user_email : "+param.get("user_email"));
-		System.out.println("postid : "+param.get("postid"));
+		System.out.println("postid : "+param.get("comm_postid"));
 		
 		String title = (String) param.get("title");
 		String memo = (String) param.get("updateContent");
 		String user_nm = (String) param.get("user_nm");
 		String user_email = (String) param.get("user_email");
 		
-		 String comm_postid = (String) param.get("postid");
+		 String comm_postid = (String) param.get("comm_postid");
 		    if (comm_postid != null && !comm_postid.isEmpty()) {
 		        try {
 		            // 필요한 경우 Integer로 변환
 		            int postIdInt = Integer.parseInt(comm_postid);
-		            param.put("postid", postIdInt);
+		            param.put("comm_postid", postIdInt);
 		        } catch (NumberFormatException e) {
 		            // postid 형변환 중 오류 발생시 처리
 		            System.err.println("Invalid postid format: " + comm_postid);
@@ -150,7 +155,6 @@ public class CommunityController {
 		        modelMap.addAttribute("message", "게시글 번호가 없습니다.");
 		        return "redirect:list";
 		    }
-		
 		
 		param.put("title", title);
 		param.put("updateContent", memo);
@@ -173,7 +177,7 @@ public class CommunityController {
 	public String detailCommunity(@RequestParam HashMap<String, Object>param, HttpServletRequest req, ModelMap modelmap) {
 		
 //		// HashMap에서 'postid' 키를 사용하여 값을 가져옴
-		String comm_postid = (String) param.get("postid");
+		String comm_postid = (String) param.get("comm_postid");
 
 		// postid 값이 제대로 가져와졌는지 확인
 		if (comm_postid != null && !comm_postid.isEmpty()) {
@@ -193,7 +197,6 @@ public class CommunityController {
 		    // 적절한 오류 처리를 수행
 		}
 
-		
 		HashMap<String, Object>cdetail = communitySvc.detailCommunity(param);
 		modelmap.addAttribute("cd", cdetail);
 		
@@ -216,13 +219,10 @@ public class CommunityController {
 		System.out.println("cmm_rememo : " + param.get("comm_rememo"));
 		
 		Integer comm_postid = (Integer) param.get("comm_postid");
-		String comm_rememo = (String) param.get("comm_rememo");
 		String user_email = req.getSession().getAttribute("user_email").toString();
 
 		param.put("comm_postid", comm_postid);
-		//param.put("comm_rememo", comm_rememo);
 		param.put("user_email", user_email);
-		System.out.println("param : " + param);
 		
 		communitySvc.insertReply(param);
 		

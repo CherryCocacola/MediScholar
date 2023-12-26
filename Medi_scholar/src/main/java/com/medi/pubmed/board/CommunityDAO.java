@@ -60,5 +60,9 @@ public class CommunityDAO {
 		return sqlSession.delete("deleteCommunity",id);
 	}
 
+	public int getReplyCount(HashMap<String, Object> param) {
+		return sqlSession.selectOne("getReplyCount", param);
+	}
+
 
 }

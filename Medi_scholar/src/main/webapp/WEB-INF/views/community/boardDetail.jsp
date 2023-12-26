@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!-- 영역 표시 내꺼 -->
    		<!-- 헤더 -->
     	<jsp:include page="../common/header.jsp" />
@@ -14,9 +16,9 @@
                     <a href="/">Home</a> > Community
                 </div>
             </div>
-
+			
             <div class="ma-t-15 clear">
-                <button class="btn btn-1 f-r" onclick="location.href='/community/updatecomm?postid=${cd.postid}'">Update</button>
+                <button class="btn btn-1 f-r" onclick="location.href='/community/updatecomm?comm_postid=${cd.comm_postid}'">Update</button>
                 <button class="btn btn-2 f-l" onclick="location.href='/community/list'">List</button>
             </div>
             
@@ -28,13 +30,13 @@
                             <div class="list-tit">${cd.title}</div>
                             <div class="list-writer">${cd.user_nm}</div>
                             <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
+                                <span>Comment : <strong>${replyCount}</strong></span>
                                 <span class="sep">|</span>
                                 <span>Like : <strong>104</strong></span>
                                 <span class="sep">|</span>
                                 <span>Hit : <strong>12067</strong></span>
                                 <span class="sep">|</span>
-                                <span>Date : <strong>${cd.regdate}</strong></span>
+                                <span>Date : <strong><fmt:formatDate value="${cd.regdate}" pattern="yyyy-MM-dd HH:mm"/></strong></span>
                             </div>
                         </div>
                     </li>
@@ -49,8 +51,8 @@
             </div>
 
             <div class="ma-t-10 clear">
-                <button class="btn btn-1 f-r" onclick="location.href='/community/updatecomm?postid=${cd.postid}'">Update</button>
-                <button class="btn btn-2 f-r ma-r-5" onclick="location.href='/community/del?id=${cd.postid}'">Delete</button>
+                <button class="btn btn-1 f-r" onclick="location.href='/community/updatecomm?comm_postid=${cd.comm_postid}'">Update</button>
+                <button class="btn btn-2 f-r ma-r-5" onclick="location.href='/community/del?id=${cd.comm_postid}'">Delete</button>
                 <button class="btn btn-2 f-l" onclick="location.href='/community/list'">List</button>
             </div>
 

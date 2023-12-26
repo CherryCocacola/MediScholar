@@ -60,6 +60,11 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<HashMap<String, Object>> getReplyList(HashMap<String, Object> param) {
 		return communityDao.getReplyList(param);
 	}
+	
+	@Override
+	public int getReplyCount(HashMap<String, Object> param) {
+		return communityDao.getReplyCount(param);
+	}
 
 	
 }

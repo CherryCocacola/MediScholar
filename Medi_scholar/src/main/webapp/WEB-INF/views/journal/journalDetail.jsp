@@ -11,7 +11,7 @@
                 <h2 class="f-l col-navy">Journal</h2>
                 <div class="f-r ma-t-5">
                     <a href="/">Home</a> >
-                    <a href="/Journal">Journal List</a> > Journal Deatil</a>
+                    <a href="/Journal">Journal List</a> > Journal Detail</a>
                 </div>
             </div>
 

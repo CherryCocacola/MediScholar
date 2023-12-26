@@ -38,7 +38,7 @@
                     <thead>
                         <tr>
                             <th rowspan="2">No</th>
-                            <th rowspan="2">ISSN / <br> EISSN</th>
+                            <th rowspan="2" colspan="2">ISSN / EISSN</th>
                             <th rowspan="2">Journal</th>
                             <th colspan="3">JSR</th>
                             <th rowspan="2" colspan="2">Journal Impact Index</th>
@@ -54,7 +54,8 @@
 		                <c:forEach var="journal" items="${journal}">
 		                    <tr>
 		                        <td>${journal.jnlno}</td>
-		                        <td>${journal.issn} / <br> ${journal.eissn}</td>
+		                        <td>${journal.issn}</td>
+		                        <td>${journal.eissn}</td>
 		                        <td class="a-l"><a href="journaldetail?id=${journal.jnlid}">${journal.jnlnm}</a></td>
 	                            <td>${journal.scie}</td>
 	                            <td>${journal.ssci}</td>
