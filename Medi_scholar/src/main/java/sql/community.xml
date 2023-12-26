@@ -2,5 +2,124 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sql.community">
 	<select id="getCommunityList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		 select 	t01.comm_postid as postid,
+			t01.comm_title as title,
+			t01.comm_memo as memo,
+			(SELECT tun.user_nm  
+		 FROM pubmed.tb_user_nt_01 tun
+		 where tun.user_email = t01.comm_writer )as user_nm,
+				regdate
+			from pubmed.tb_board_nt01 t01
+			where deleteflag = 'N'
+			order by postid desc
+			limit 10 offset #{offset}
 	</select>
+	<select id="getCommunityCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		 select count(*)
+			from pubmed.tb_board_nt01 t01
+	</select>
+	
+	<insert id="insertCommunity" parameterType="java.util.HashMap">
+		INSERT INTO pubmed.tb_board_nt01
+  (comm_title, comm_memo, comm_writer, regdate, deleteflag)
+  VALUES
+  (#{title}, #{CommunityContent}, #{user_email}, now(), 'N')
+	</insert>	    
+	    
+	<update id="updateCommunity" parameterType="java.util.HashMap" >
+	UPDATE pubmed.tb_board_nt01
+	SET
+	    comm_title = #{title},
+	    comm_memo = #{updateContent}, 
+	    lastwriter = #{user_nm},  -- 글 작성 날짜 유지
+	    lastdate = now()  -- 글 수정 날짜를 현재 시간으로 업데이트
+	WHERE
+	    comm_postid = CAST(#{postid} AS INTEGER)
+    
+
+	</update>
+	
+	<select id="detailCommunity" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		  SELECT
+			  comm_postid AS postid,
+			  comm_title AS title,
+			  comm_memo AS memo,
+			  (SELECT tun.user_nm  
+		 FROM pubmed.tb_user_nt_01 tun
+		 where tun.user_email = comm_writer) AS user_nm,
+			  regdate AS regdate,  -- 날짜 형식 지정
+			  lastdate AS lastdate  -- 수정일 표시
+			FROM pubmed.tb_board_nt01
+			WHERE comm_postid = CAST(#{postid}AS INTEGER)
+	</select>
+	
+		<select id="getReplyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+								select 	tbn.comm_postid as comm_postid, 
+				 					   tbn.comm_reno as comm_reno,
+									   tbn.comm_writernm as comm_writernm, 
+				 					   tbn.comm_rememo as comm_rememo,
+				 					   tbn.comm_reparent as comm_reparent,
+				 					   tbn.comm_redepth as comm_redepth,
+				 					   tbn.comm_reorder as comm_reorder,
+				 					   tbn.redate as redate
+				 				  from pubmed.tb_board_nt02 tbn 
+				 				 where tbn.comm_postid = CAST(#{comm_postid} AS INTEGER)
+				 				   and tbn.DELETEFLAG = 'N' 
+				 				 order by COALESCE(comm_reparent, comm_reno) DESC, 
+									   comm_redepth ASC, 
+									   comm_reorder ASC
+				 			  
+	</select>
+	
+	<insert id="insertReply" parameterType="java.util.HashMap">
+			INSERT INTO pubmed.tb_board_nt02  (comm_postid,comm_writernm, comm_rememo, comm_reparent, comm_redepth, comm_reorder, redate,deleteflag,lastwriternm) 
+				 	  	select CAST(#{comm_postid} AS INTEGER) as comm_postid, 
+				 	 		(select user_nm as user_nm
+				 			   from pubmed.tb_user_nt_01 
+				 			  where user_email = #{user_email}) as comm_writernm, 
+				 			   #{replyContent} as comm_rememo, 
+				 			   null as reparent, 
+				 			   CAST(1 AS INTEGER) as redepth, 
+				 			   CAST(COALESCE((SELECT MAX(comm_reorder) FROM pubmed.tb_board_nt02  WHERE comm_postid = #{comm_postid}), 0) + 1  AS INTEGER) as comm_reorder, 
+				 			   now() as redate, 
+				 			   'N' as DELETEFLAG,
+				 			(select user_nm as user_nm
+				 			   from pubmed.tb_user_nt_01 
+				 			  where user_email = #{user_email}) as lastwriternm	
+	</insert>
+
+	<update id="deleteReply" parameterType="java.util.HashMap">
+		update pubmed.tb_board_nt02 set deleteflag = 'Y', 
+								lastwriternm  = #{lastwriternm}, 
+								lastdate = now() 
+					 			where comm_reno = #{comm_reno}
+	</update>
+	
+	<insert id="insertSubreply" parameterType="java.util.HashMap">
+	INSERT INTO pubmed.tb_board_nt02 (
+				comm_postid,
+				comm_writernm, 
+				comm_rememo, 
+				comm_reparent, 
+				comm_redepth, 
+				comm_reorder, 
+				redate,
+				deleteflag,
+				lastwriternm)
+	    SELECT #{comm_postid},
+	           #{lastwriternm},
+	           #{subreplyContent} as rememo,
+	           #{reno} as reparent, -- 부모 댓글 ID
+	           (SELECT comm_redepth FROM pubmed.tb_board_nt02 WHERE comm_reno = #{reno}) + 1 as redepth, -- 부모 댓글의 REDEPTH + 1
+	           COALESCE((SELECT MAX(comm_reorder) FROM pubmed.tb_board_nt02 WHERE comm_reparent = #{reno}), 0) + 1 as reorder, 
+	           NOW() as redate,
+	           'N' as REDELETEFLAG,
+	           #{lastwriternm}
+	</insert>  
+	<delete id="deleteCommunity">
+	UPDATE pubmed.tb_board_nt01 t01 
+	SET deleteflag = 'Y', lastdate = now()
+	WHERE t01.comm_postid = CAST(#{postid} AS INTEGER)
+	</delete>     
+	
 </mapper>

@@ -9,7 +9,7 @@
 <script
     src="https://cdn.tiny.cloud/1/h3bmqqrdxte5eq59jam8z9ub9qy1n5medl7940uihpwms3ya/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
-<script type="text/javascript" src=/resources/js/write.js></script>
+<script type="text/javascript" src=/resources/js/update.js></script>
 
 <!-- 헤더 -->
 <jsp:include page="../common/header.jsp" />
@@ -31,12 +31,19 @@
     </div>
 
     <!-- TinyMCE Editor -->
-    <form id="CommunityForm" method="post" action="writecomm">
-		<input type="text" name="title" value="Title here" style="width: 100%;">
-         <textarea id="hiddenTextarea" name="CommunityContent" style="display:none;"></textarea>
-        <textarea id="textarea">Express your opinion</textarea>
-         <input type="button" value="Submit" onclick="CommunityReply()">
-    </form>
+     <form id="CommunityUpdateForm" method="post" action="updatecomm">
+    <input type="text" name="title" value="${cd.title}" style="width: 100%;">
+    <textarea id="hiddenTextarea" style="display:none;"></textarea>
+    <textarea id="textarea" name="updateContent">${cd.memo }</textarea>
+    
+    <!-- hidden 필드 추가 -->
+    <input type="hidden" class="user_nm" name="user_nm" value="${cd.user_nm}">
+    <input type="hidden" class="user_email" name="user_email" value="${cd.user_email}">
+    <input type="hidden" class="postid" name="postid" value="${cd.postid}">
+    
+    <!-- submit 버튼으로 변경 -->
+    <input type="submit" value="Submit">
+</form>
 </section>
 
 <script>

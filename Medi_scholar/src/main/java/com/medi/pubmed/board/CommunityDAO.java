@@ -16,4 +16,49 @@ public class CommunityDAO {
 	public List<HashMap<String, Object>> getCommunityList(HashMap<String, Object> param){
 		return sqlSession.selectList("getCommunityList", param); 
 	}
+	
+	
+	public List<HashMap<String, Object>> getReplyList(HashMap<String, Object> param){
+		return sqlSession.selectList("getReplyList", param); 
+	}
+	
+	public Integer getCommunityCount(HashMap<String, Object> param){
+		return sqlSession.selectOne("getCommunityCount", param); 
+	}
+
+	public void insertCommunity(HashMap<String, Object> param) {
+		sqlSession.insert("insertCommunity",param);
+		
+	}
+
+	public HashMap<String, Object> detailCommunity(HashMap<String, Object> param) {
+		
+		return sqlSession.selectOne("detailCommunity",param);
+	}
+
+	public int updateCommunity(HashMap<String, Object> param) {
+		
+		return sqlSession.update("updateCommunity",param);
+	}
+
+	public void insertReply(HashMap<String, Object> param) {
+		
+		sqlSession.selectOne("insertReply",param);
+	}
+
+	public void deleteReply(HashMap<String, Object> param) {
+		sqlSession.selectOne("deleteReply",param);
+		
+	}
+
+	public void insertSubreply(HashMap<String, Object> param) {
+		
+		sqlSession.selectOne("insertSubreply",param);
+	}
+
+	public int deleteCommunity(Integer id) {
+		return sqlSession.delete("deleteCommunity",id);
+	}
+
+
 }

@@ -1,225 +1,87 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 정혜선 -->
-   		<!-- 헤더 -->
-    	<jsp:include page="../common/header.jsp" />
-    	
-        <section class="content">
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-            <div class="tit-con clear">
-                <h2 class="f-l col-navy">Community</h2>
-                <div class="f-r ma-t-5">
-                    <a href="/">Home</a> > Community
-                </div>
-            </div>
+<!-- 헤더 -->
+<jsp:include page="../common/header.jsp" />
 
-            <div class="list-search clear ma-t-15">
-                <div class="f-r">
-                    <div class="clear">
-                        <select class="dominimal f-l">
-                            <option value="">Title</option>
-                            <option value="">Writer</option>
-                        </select>
-                        <label for="SearchInput"></label>
-                        <input type="text" class="" id="SearchInput" name="sjournal" />
-                        <input type="button" name="" value="Search" class="btn-con-search" />
-                    </div>
-                </div>
-                <div class="f-l">Total : <strong>78</strong> posts</div>
-            </div>
-            <div class="con-list ma-t-5">
-                <ul>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no"><strong>NOTICE</strong></div>
-                            <div class="list-tit nowrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et blandit nisi. Phasellus convallis, arcu eu efficitur viverra, leo nisl vestibulum tortor, quis vehicula turpis magna at nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In vitae ex venenatis, luctus eros at, tincidunt quam.</div>
-                            <div class="list-writer">Aliquam</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no"><strong>NOTICE</strong></div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">Aliquam</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no"><strong>NOTICE</strong></div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">Aliquam</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">330</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">ipsum</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">329</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">consectetur</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">328</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">ipsum</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">327</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">consectetur</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">326</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">ipsum</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">325</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">consectetur</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="clear" href="/Community/BoardDetail">
-                            <div class="list-no">324</div>
-                            <div class="list-tit nowrap">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                            <div class="list-writer">consectetur</div>
-                            <div class="list-etc">
-                                <span>Comment : <strong>21</strong></span>
-                                <span class="sep">|</span>
-                                <span>Like : <strong>104</strong></span>
-                                <span class="sep">|</span>
-                                <span>Hit : <strong>12067</strong></span>
-                                <span class="sep">|</span>
-                                <span>Date : <strong>2023-09-20</strong></span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<section class="content">
 
-            <div class="ma-t-10 clear">
-                <button class="btn btn-1 f-r" onclick="location.href='/Community/BoardReg'">Write</button>
-            </div>
+	<div class="tit-con clear">
+		<h2 class="f-l col-navy">Community</h2>
+		<div class="f-r ma-t-5">
+			<a href="/">Home</a> > Community
+		</div>
+	</div>
+	<form action="/community/list" method="get">
+		<div class="list-search clear ma-t-15">
+			<div class="f-r">
+				<div class="clear">
+					<select class="dominimal f-l" name="search">
+						<option ${(param.search=="title")?"selected":""} value="title">Title</option>
+						<option ${(param.search=="user")?"selected":""} value="user">Writer</option>
+					</select> <label for="SearchInput"></label> <input type="text"
+						id="SearchInput" name="input" /> <input type="button"
+						value="Search" class="btn-con-search" />
+				</div>
+			</div>
+	</form>
+	<div class="f-l">
+		Total : <strong>${totalCount}</strong> posts
+	</div>
+	</div>
 
-            <div class="paging ma-t-10">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" class="arrow">
-                            <svg class="ic-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"></path>
+	<div class="con-list ma-t-5">
+		<ul>
+			<c:forEach var="cl" items="${cl}">
+				<li><a class="clear" href="/community/detailcomm">
+						<div class="list-no">
+							<strong>${cl.postid}</strong>
+						</div>
+						<div class="list-tit nowrap"><a href="/community/detailcomm?postid=${cl.postid}">${cl.title} / 내용 : ${cl.memo}</a></div>
+						<div class="list-writer">${cl.user_nm}</div>
+						<div class="list-etc">
+							<span>Comment : <strong>21</strong></span> <span class="sep">|</span>
+							<span>Like : <strong>104</strong></span> <span class="sep">|</span>
+							<span>Hit : <strong>50</strong></span> <span class="sep">|</span>
+							<span>Date : <strong>${cl.regdate}</strong></span>
+						</div>
+				</a></li>
+			</c:forEach>
+
+			<div class="ma-t-10 clear">
+				<button class="btn btn-1 f-r"
+					onclick="location.href='/community/writecomm'">Write</button>
+			</div>
+
+			<div class="paging ma-t-10">
+				<ul class="pagination">
+				    <c:if test="${page > 1}">
+					<li><a href="/community/list?page=${page-1}" class="arrow"> <svg class="ic-arrow"
+								aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+								fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor"
+									stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"></path>
                             </svg>
-                        </a>
-                    </li>
-                    <li><a href="#" class="active">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" class="arrow">
-                            <svg class="ic-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+					</a></li>
+					</c:if>
+					<c:forEach var="i" begin="1" end="${totalPages}" step="1">
+					<li><a href="/community/list?page=${i}" ${i == page ? 'class="active"':''}>${i}</a></li>
+					</c:forEach>
+				    <c:if test="${page < totalPages}">
+					<li><a href="/community/list?page=${page+1}" class="arrow"> <svg class="ic-arrow"
+								aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+								fill="none" viewBox="0 0 8 14">
+                                <path stroke="currentColor"
+									stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                             </svg>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        
-    	<jsp:include page="../common/footer.jsp" />
+					</a></li>
+					</c:if>
+				</ul>
+			</div>
+</section>
+
+<jsp:include page="../common/footer.jsp" />
+
