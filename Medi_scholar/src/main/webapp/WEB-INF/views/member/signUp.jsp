@@ -96,7 +96,7 @@
 
 				<p class="a-c">
 					Already have an account?
-					<a class="underline" href="/board/login">Login</a>
+					<a class="underline" href="/member/login">Login</a>
 				</p>
 			</main>
 		</section>

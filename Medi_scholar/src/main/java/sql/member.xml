@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sql.member">
 
-	<!-- 저널목록 -->	
+	<!-- 로그인 유저인포 -->	
 	<!--  "" 안에 든 인자 값을 가져온다/ 결과를 ""인자에 넣는다 	 -->
 	<select id="getUserInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		  select tun.user_email as userId,
-                tun.user_nm as userNm ,
-                tun.user_pass as userPw,
-                tun.user_hometown as nation,
-                tun.user_job as job,
-                tun.pri_field as priField,
-                tun.sec_field as secField
-          from pubmed.tb_user_nt_01 tun 
-          where user_email = #{userid}
-           and user_pass = pubmed.crypt('1111', #{userpw});
+		  SELECT tun.user_email as userId,
+		         tun.user_nm as userNm,
+		         tun.user_pass as userPw,
+		         tun.user_hometown as nation,
+		         tun.user_job as job,
+		         tun.pri_field as priField,
+		         tun.sec_field as secField
+    	FROM pubmed.tb_user_nt_01 tun
+    	WHERE user_email = #{email}
+      	AND user_pass = pubmed.crypt(#{password}, '1111');
 	<!-- jsp와 #{}안에 단어를 맞춰준다 -->
 	</select>
 	<!-- 구글이메일 회원디비 유무 체크 -->

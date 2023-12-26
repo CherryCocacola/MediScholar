@@ -38,18 +38,20 @@ public class MediMemberController {
 	
 	@PostMapping("login")
 	public String loginChk(HttpServletRequest req, ModelMap modelMap, @RequestParam HashMap<String, Object> param) {
-
+		logger.info("useremail확인 : " + param.get("userId"));
 		// userinfo 받아와서 hashmap에 저장하기
 		HashMap<String, Object> user = medimembersvc.getUserInfo(param);
+		
+		
 		if(user != null) {
 			HttpSession session = req.getSession();
 			// 세션값 저장
-			session.setAttribute("userId", user.get("userId"));
+			session.setAttribute("userEmail", user.get("userId"));
 			session.setAttribute("userNm", user.get("userNm"));
 			// 세션 잘 받았나 로그확인
 			logger.info("session Id : " + user.get("userId"));
 			logger.info("session Name : " + user.get("userNm"));
-
+			
 		}
 		return "redirect:/journal/journallist";
 
