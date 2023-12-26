@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequestMapping("/journal/*")
 @Controller
@@ -64,5 +67,10 @@ public class JournalController {
 		
 		return "journal/chart";
 	}
-
+	
+	@PostMapping("/data")
+	@ResponseBody
+	public List<HashMap<String, Object>> getMonthlyData(@RequestBody HashMap<String, Object> param) {
+		return journalSvc.getChartData(param); // 가정된 서비스 메서드
+    }
 }
