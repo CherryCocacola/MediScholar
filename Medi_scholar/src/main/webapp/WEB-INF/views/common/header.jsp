@@ -36,18 +36,18 @@
 	           <div class="gnb">
 	               <ul class="clear">
 		               <% if(email == null) { // 로그인이 되어있지 않은 경우 %>
-		                   <li><a href="/Member/Login">Login</a></li>
-						   <li><a href="/Member/SignUp">SignUp</a></li>
+		                   <li><a href="/member/login">Login</a></li>
+						   <li><a href="/member/signup">SignUp</a></li>
 					   <% } else { // 로그인이 된 경우 %>
-						   <li><a href="/Member/Logout">Logout</a></li>
-						   <li><a href="/Member/Modify">Modify</a></li>
+						   <li><a href="/member/logout">Logout</a></li>
+						   <li><a href="/member/Modify">Modify</a></li>
 				       <% } %>
 	               </ul>
 	           </div>
 	       </div>
 	       <nav>
 	           <ul class="clear">
-	               <li><a href="/Journal" class="active">Journal</a></li>
+	               <li><a href="journal/journallist" class="active">Journal</a></li>
 	               <li><a href="/Pubmed">Pubmed</a></li>
 	               <li><a href="/journal/chart">Statistics</a></li>
 	               <li><a href="/community/list">Community</a></li>
