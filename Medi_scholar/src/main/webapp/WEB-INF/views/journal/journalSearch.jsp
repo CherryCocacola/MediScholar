@@ -25,34 +25,14 @@
                             <label for="SearchInput"></label>
                             <input type="text" id="SearchInput" name="sjournal" />
                         </div>
-                        <div class="clear ma-t-5">
-                            <span class="sp1">By Period</span>
-                            <input type="radio" class="btn-check check-1" name="speriod" id="Search1Year" autocomplete="off" checked>
-                            <label for="Search1Year">1 Year</label>
-    
-                            <input type="radio" class="btn-check" name="speriod" id="Search6Month" autocomplete="off">
-                            <label for="Search6Month">6 Month</label>
-    
-                            <input type="radio" class="btn-check" name="speriod" id="Search3Month" autocomplete="off">
-                            <label for="Search3Month">3 Month</label>
-    
-                            <input type="radio" class="btn-check" name="speriod" id="Search1Month" autocomplete="off">
-                            <label for="Search1Month">1 Month</label>
-    
-                            <input type="radio" class="btn-check perd" name="speriod" id="SearchPeriod" autocomplete="off">
-                            <label for="SearchPeriod">Period</label>
-
-                            <!-- Period 선택시 disabled 사라지고 활성화 -->
-                            <input type="date" name="" class="dateInput" disabled />
-                            <span class="sp2">~</span>
-                            <input type="date" name="" class="dateInput" disabled />
-                        </div>
                     </div>
                     <input type="submit" value="Search" class="btn-con-search" />
                 </form>
             </div>
 
+			
             <div class="con-tbl">
+            <h3>Total : ${count}</h3>
                 <div class="tbl-scr">
                     <table>
                     <thead>
@@ -71,16 +51,16 @@
                         </tr>
                     </thead>
                      <tbody>
-		                <c:forEach var="jl" items="${jl}">
+		                <c:forEach var="journal" items="${journal}">
 		                    <tr>
-		                        <td>${jl.jnlno}</td>
-		                        <td>${jl.issn} / <br> ${jl.eissn}</td>
-		                        <td class="a-l"><a href="JournalDetail?id=">${jl.jnlnm}</a></td>
-	                            <td>${jl.scie}</td>
-	                            <td>${jl.ssci}</td>
-	                            <td>${jl.esci}</td>
-	                            <td>${jl.jcr}</td>
-	                            <td>${jl.jci}</td>
+		                        <td>${journal.jnlno}</td>
+		                        <td>${journal.issn} / <br> ${journal.eissn}</td>
+		                        <td class="a-l"><a href="journaldetail?id=${journal.jnlid}">${journal.jnlnm}</a></td>
+	                            <td>${journal.scie}</td>
+	                            <td>${journal.ssci}</td>
+	                            <td>${journal.esci}</td>
+	                            <td>${journal.jcr}</td>
+	                            <td>${journal.jci}</td>
 	                            <td><a href="#">3,001</a></td>
 		                    </tr>
 		                </c:forEach>
@@ -102,7 +82,7 @@
 							<li>
 								<c:choose>
 									<c:when test="${startNum > 1}">
-										<a href="/pubmed/journal?page=${startNum-1}&field=${param.field}&sjournal=${param.sjournal}"
+										<a href="/journal/journallist?page=${startNum-1}&field=${param.field}&sjournal=${param.sjournal}"
 											class="arrow"> </a>
 									</c:when>
 									<c:otherwise>
@@ -120,24 +100,22 @@
 										</c:when>
 										<c:otherwise>
 											<a
-												href="/pubmed/journal?page=${startNum+i}&field=${param.field}&sjournal=${param.sjournal}">${startNum+i}</a>
+												href="/journal/journallist?page=${startNum+i}&field=${param.field}&sjournal=${param.sjournal}">${startNum+i}</a>
 										</c:otherwise>
 									</c:choose></li>
 							</c:forEach>
 
 							<%-- 화살표 앞으로 --%>
 							<li>
-								<c:choose>
-									<c:when test="${startNum + 5 <= lastNum}">
-										<a href="/pubmed/journal?page=${startNum +5}&field=${param.field}&sjournal=${param.sjournal}"
-											class="arrow"> </a>
-									</c:when>
-									<c:otherwise>
-										<a href="javascript:;" onclick="alert('마지막 페이지입니다.')"
-											class="arrow"></a>
-									</c:otherwise>
-								</c:choose>
-							</li>
+							<c:choose>
+								<c:when test="${startNum + 5 <= lastNum}">
+									<a href="/journal/journallist?page=${startNum +5}&field=${param.field}&sjournal=${param.sjournal}" class="arrow"> </a>
+								</c:when>
+								<c:otherwise>
+									<a href="javascript:;" onclick="alert('마지막 페이지입니다.')" class="arrow"></a>
+								</c:otherwise>
+							</c:choose>
+						</li>
 					</ul>
 				</div>
 			</div>

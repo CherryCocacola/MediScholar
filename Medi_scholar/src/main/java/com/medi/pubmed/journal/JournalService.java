@@ -12,4 +12,8 @@ public interface JournalService {
 
 	int getJournalCount(HashMap<String, Object> param);
 
+	HashMap<String, Object> getJournalDetail(HashMap<String, Object> param);
+
+	HashMap<String, Object> getJournalImpact(HashMap<String, Object> param);
+
 }

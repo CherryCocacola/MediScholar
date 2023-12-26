@@ -20,4 +20,16 @@ public class JournalDAO {
 	public int getJournalCount(HashMap<String, Object> param) {
 		return sqlSession.selectOne("getJournalCount", param);
 	}
+
+	public HashMap<String, Object> getJournalDetail(HashMap<String, Object> param) {
+		return sqlSession.selectOne("getJournalDetail", param);
+	}
+
+	public HashMap<String, Object> getJournalImpact(HashMap<String, Object> param) {
+		return sqlSession.selectOne("getJournalImpact", param);
+	}
+	
+	
+	
+	
 }

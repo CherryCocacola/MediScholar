@@ -3,6 +3,7 @@
     
    		<!-- 헤더 -->
     	<jsp:include page="../common/header.jsp" />
+    	<script type="text/javascript" src=/resources/js/impact.js></script>
     	
         <section class="content">
 
@@ -15,24 +16,21 @@
             </div>
 
             <div class="con-tbl ma-t-15">
-                
                 <div class="tbl-scr">
                     <table class="tbl-1">
                     <tr>
                         <th>Journal</th>
-                        <td colspan="3">${detail.journal_nm}</td>
+                        <td colspan="3">${detail.jnlnm}</td>
                     </tr>
                     <tr>
                         <th>Journal URL</th>
-                        <td>${detail.journal_url}</td>
-                        <th>Journal Mesh</th>
-                        <td>${detail.journal_mesh}</td>
+                        <td><a href="${detail.url}">${detail.url}</a></td>
                     </tr>
                     <tr>
                         <th>Journal Country</th>
-                        <td>${detail.journal_country}</td>
+                        <td>${detail.country}</td>
                         <th>Journal Language</th>
-                        <td>${detail.journal_language}</td>
+                        <td>${detail.lan}</td>
                     </tr>
                     <tr>
                         <th>ISSN</th>
@@ -45,37 +43,46 @@
                     </tr>
                     </table>
                 </div>
-                    
-                <div class="tbl-scr">
+
+			<div id="jnldetaildiv">
+			    <div class="con-search clear">
+			        <select id="yearSelect" name="field" style="display:none;" onchange="updateJournalData()">
+			            <option value="2021">2021</option>
+			            <option value="2022">2022</option>
+			        </select>
+			
+			        <button type="button" onclick="selectYear('2021')">2021</button>
+			        <button type="button" onclick="selectYear('2022')">2022</button>
+			    </div>
+			</div>
+			<div id="impactTable">
+				<div class="tbl-scr">
                     <table class="ma-t-10">
                     <thead>
                         <tr>
                             <th colspan="3">JSR</th>
-                            <th colspan="2">SClmago</th>
                             <th rowspan="2">Journal<br />Impact Index</th>
                             <th rowspan="2">Article</th>
                         </tr>
                         <tr>
-                            <th>SCI</th>
-                            <th>Level</th>
+                            <th>SCIE</th>
+                            <th>SSCI</th>
                             <th>ESCI</th>
-                            <th>SCI</th>
-                            <th>SLevel</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>O</td>
-                            <td>Q1</td>
-                            <td>X</td>
-                            <td>O</td>
-                            <td>Q1</td>
-                            <td>7.7</td>
-                            <td><a href="#">3,001</a></td>
-                        </tr>
+						<tr>
+							<td>${impact.scie}</td>
+							<td>${impact.ssci}</td>
+							<td>${impact.esci}</td>
+							<td>${impact.jci}/${impact.jcr}</td>
+							<td>article count</td>
+						</tr>
                     </tbody>
                     </table>
                 </div>
+			</div>	
+                
             </div>
         </section>
         

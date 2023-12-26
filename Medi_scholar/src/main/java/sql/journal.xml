@@ -17,9 +17,9 @@
                    tjn2.jcr as jcr,
                    tjn2.jci as jci
             FROM pubmed.tb_jour_mt_01 tjm, pubmed.tb_jour_nt_02 tjn2, pubmed.tb_jour_nt_03 tjn3
-            where tjm.jour_id = tjn2.jour_id
-             and tjn2.jour_id = tjn3.jour_id
-            and tjn2.scr_year = '2022'
+            WHERE tjm.jour_id = tjn2.jour_id
+             AND tjn2.jour_id = tjn3.jour_id
+            AND tjn2.scr_year = '2022'
             <choose>
                 <when test="field =='title' and sjournal != null and sjournal != ''" >
                     AND tjm.jour_nm ilike concat('%', #{sjournal}, '%')
@@ -29,7 +29,7 @@
                 </when>
                 <otherwise></otherwise>
             </choose>
-            ORDER BY jcr desc
+             ORDER BY tjn2.jcr::numeric DESC NULLS LAST
         ) n
     ) AS journal_list
     <where>
@@ -37,12 +37,46 @@
     </where>
 </select>
 
+
 <select id="getJournalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 	SELECT count(*) as count
 	FROM pubmed.tb_jour_mt_01 tjm,
 			pubmed.tb_jour_nt_02 tjn
 	WHERE tjm.jour_id = tjn.jour_id
 </select>
+
+<select id="getJournalDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		SELECT tjn2.jour_fact_seq as seq,
+                   tjm.jour_nm as jnlnm,
+                   tjm.jour_id as jnlid,
+                   tjm.issn as issn,
+                   tjm.eissn as eissn,
+                   tjn3.countryofpublication as country,
+                   tjn3.language_ as lan,
+                   tjn3.electroniclinks as url
+         FROM pubmed.tb_jour_mt_01 tjm, pubmed.tb_jour_nt_02 tjn2, pubmed.tb_jour_nt_03 tjn3
+         WHERE tjm.jour_id = tjn2.jour_id
+                and tjn2.jour_id = tjn3.jour_id
+                and tjn2.scr_year = #{year}
+                and tjn2.jour_id = #{id}
+</select>
+
+<select id="getJournalImpact" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	SELECT tjn2.jour_fact_seq as seq,
+                   tjm.jour_nm as jnlnm,
+                   tjm.jour_id as jnlid,
+                   tjm.scie as scie,
+                   tjm.ssci as ssci,
+                   tjm.esci as esci,
+                   tjn2.jcr as jcr,
+                   tjn2.jci as jci
+     FROM pubmed.tb_jour_mt_01 tjm, pubmed.tb_jour_nt_02 tjn2, pubmed.tb_jour_nt_03 tjn3
+     WHERE tjm.jour_id = tjn2.jour_id
+                and tjn2.jour_id = tjn3.jour_id
+                and tjn2.scr_year = #{year}
+				and tjn2.jour_id = #{id}
+</select>
+
 
 
 </mapper>

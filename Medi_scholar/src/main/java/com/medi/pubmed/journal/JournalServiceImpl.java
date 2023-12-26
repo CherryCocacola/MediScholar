@@ -76,21 +76,27 @@ public class JournalServiceImpl implements JournalService{
 			
 			jl.put("scie", scie);
 			jl.put("ssci", ssci);
+			jl.put("esci", esci);
 			jl.put("issn", issn);
 			
 		}
-		
-		//출력 확인
-		System.out.println("service_field : " + param.get("field"));
-		System.out.println("service_spage : " + param.get("startPage"));
-		System.out.println("service_lpage : " + param.get("lastPage"));
-		
 		return list;
 	}
 	
 	public int getJournalCount(HashMap<String, Object> param) {
 		return journalDao.getJournalCount(param);
 	}
+	
+	public HashMap<String, Object> getJournalDetail(HashMap<String, Object> param) {
+		return journalDao.getJournalDetail(param);
+	}
+	
+	public HashMap<String, Object> getJournalImpact(HashMap<String, Object> param) {
+		return journalDao.getJournalImpact(param);
+	}
+	
+	
+	
 	
 	
 }

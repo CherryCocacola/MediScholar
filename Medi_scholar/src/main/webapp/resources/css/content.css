@@ -5,7 +5,7 @@
 
 .con-search{padding:1.5rem 0.5rem;font-size:12px;font-weight:normal;}
 .con-search .con-search-form{float:left;width:90%;}
-.con-search .btn-con-search{float:right;width:10%;height:72px;border-radius:0 0.5rem 0.5rem 0;background:rgb(18, 128, 238);border:none;color:#fff;cursor:pointer;}
+.con-search .btn-con-search{float:right;width:10%;height:30px;border-radius:0 0.5rem 0.5rem 0;background:rgb(18, 128, 238);border:none;color:#fff;cursor:pointer;}
 .con-search input[type="radio"]{display:none;}
 .con-search input[type="radio"]+label{float:left;width:9.5%;height:2.0rem;line-height:calc(2.0rem - 2px);border:1px solid #ddd;border-right:none;text-align:center;cursor:pointer;}
 .con-search input[type="radio"]:checked+label{background-color:#113a6b;color:#fff;}
