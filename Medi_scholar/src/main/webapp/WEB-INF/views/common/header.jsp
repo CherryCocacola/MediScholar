@@ -50,7 +50,7 @@
 	               <li><a href="/Journal" class="active">Journal</a></li>
 	               <li><a href="/Pubmed">Pubmed</a></li>
 	               <li><a href="/Stat">Statistics</a></li>
-	               <li><a href="/community/list">Community</a></li>
+	               <li><a href="/Community/BoardList">Community</a></li>
 	           </ul>
 	       </nav>
 	    </header>
