@@ -49,7 +49,7 @@
 	           <ul class="clear">
 	               <li><a href="/Journal" class="active">Journal</a></li>
 	               <li><a href="/Pubmed">Pubmed</a></li>
-	               <li><a href="/Stat">Statistics</a></li>
+	               <li><a href="/journal/chart">Statistics</a></li>
 	               <li><a href="/community/list">Community</a></li>
 	           </ul>
 	       </nav>
