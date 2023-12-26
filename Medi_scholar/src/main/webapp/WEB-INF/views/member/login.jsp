@@ -54,7 +54,7 @@
                     </form>
                     <p class="a-c">
                         Don't have an account? 
-                        <a class="underline" href="/Member/SignUp">Sign up</a>
+                        <a class="underline" href="/member/signup">Sign up</a>
                     </p>
                 </div>
             </main>
