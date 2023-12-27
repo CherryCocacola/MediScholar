@@ -15,7 +15,7 @@
 <body>
 	
 	<% 
-	    String email = (String) session.getAttribute("email");
+	    String email = (String) session.getAttribute("userEmail");
 	%>
     <div class="main-container">
 
