@@ -58,7 +58,7 @@ public class MediMemberController {
 		return "redirect:/journal/journallist";
 	} else {
         // 로그인 실패 처리
-        modelMap.addAttribute("error", "Invalid email or password");
+        modelMap.addAttribute("errorMessage", "Invalid email or password");
         return "member/login"; 
 	}
 	}

@@ -147,3 +147,17 @@ function fillSelectBox(iList) {
             console.error('Error fetching reqUrl:', error);
         });
     }
+    
+  
+     function checkError() {
+            // 에러 메시지 확인
+            let error = '<c:out value="${error}" />';
+            
+            // 에러 메시지가 비어있지 않으면 alert 창 표시
+            if (error.trim() !== "") {
+                alert(error);
+            }
+        }
+
+        // 페이지 로딩 완료 시 checkError 함수 호출
+        window.onload = checkError;
