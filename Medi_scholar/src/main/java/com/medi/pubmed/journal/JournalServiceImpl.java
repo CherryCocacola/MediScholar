@@ -73,12 +73,11 @@ public class JournalServiceImpl implements JournalService {
 			} else {
 				issn = issn_;
 			}
-
 			jl.put("scie", scie);
 			jl.put("ssci", ssci);
 			jl.put("esci", esci);
 			jl.put("issn", issn);
-
+			
 		}
 		return list;
 	}
@@ -97,17 +96,23 @@ public class JournalServiceImpl implements JournalService {
 
 	@Override
 	public List<HashMap<String, Object>> getChartData(HashMap<String, Object> param) {
-
 		int selectedMonth = Integer.parseInt((String) param.get("month"));
 		// 모든 데이터 정의
 		List<HashMap<String, Object>> allData = new ArrayList<>();
 		allData.addAll(createMonthlyData(10, new int[] { 1902, 2301, 2351, 6742, 231, 3245, 12031 }, new String[] {
 				"cancer", "covid19", "skin disease", "smoke", "Upset stomach", "operation", "research" }));
-		allData.addAll(createMonthlyData(11, new int[] { 2354, 1111, 3546, 123, 4567, 2154, 3215 },
+		allData.addAll(createMonthlyData(11, new int[] { 2354, 1111, 3546, 123, 4567, 2154, 3215},
 				new String[] { "cancer", "covid19", "critical", "smoke", "Upset stomach", "operation", "research" }));
-		allData.addAll(createMonthlyData(12, new int[] { 2354, 1111, 3546, 123, 4567, 2154, 3215 },
-				new String[] { "cancer", "covid19", "critical", "smoke", "Upset stomach", "operation", "research" }));
-
+		allData.addAll(createMonthlyData(12, new int[] { 2354, 1111, 3546, 123, 4567, 3215 },
+				new String[] { "surgery", "flu", "critical", "smoke", "Upset stomach", "research" }));
+		allData.addAll(createMonthlyData(9, new int[] { 500, 1000, 1500, 2000, 3000, 5000, 10000, 15000, 20000},
+				new String[] { "surgery", "flu", "critical", "smoke", "Upset stomach", "research", "nursing", "critical care", "medicine"}));
+			
+//		검색량 1000 단위
+//		if() {
+//			
+//		}
+		
 		// 선택된 월에 해당하는 데이터 필터링
 		List<HashMap<String, Object>> filteredData = new ArrayList<>();
 		for (HashMap<String, Object> data : allData) {
@@ -115,7 +120,6 @@ public class JournalServiceImpl implements JournalService {
 				filteredData.add(data);
 			}
 		}
-
 		return filteredData;
 	}
 

@@ -60,7 +60,6 @@ public class JournalController {
 	    return "journal/journalDetail";
 	}
 	
-	//헤더의 Statistics에 하이퍼링크 걸었어요
 	@GetMapping("chart")
 	public String getChart(ModelMap modelMap, HttpServletRequest req,
 			@RequestParam HashMap<String, Object> param) {

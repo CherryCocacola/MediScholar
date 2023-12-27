@@ -1,3 +1,21 @@
+// sort로 데이터를 내림차순 정렬 (기본 오름차순. b-a 시 내림차순)
+// 정렬한 키워드 데이터의 색상을 forEach문으로 정한다 
+function assignColorsToData(data) {
+    const sortedData = data.sort((a, b) => b.count - a.count);
+    const colors = ["#E4CFE3",  "#CEDBED",  "#D4ECF0", "#DCFFDC", "#FDCAD6", "#FEDAD9"];
+    
+    //상위 6개 키워드는 colors 색상을 적용
+    //그 아래는 회색으로 통일
+    sortedData.forEach((item, index) => {
+    	if(index<6) {
+    		item.color = item.color = colors[index];
+    	}else {
+    		item.color = "#EBEBEA";
+    	}
+    });
+    return sortedData;
+}    
+
 function fetchChartData(selectedMonth) {
     document.getElementById('selectedMonth').textContent = selectedMonth;
 
@@ -23,9 +41,15 @@ function fetchChartData(selectedMonth) {
 }
 
 function drawBubbleChart(data) {
+	const sortedData = assignColorsToData(data);
+
     const width = 800;
     const height = 600;
     const bubble = d3.pack().size([width, height]).padding(5);
+    
+     // 'count' 값의 범위를 결정
+    const maxCount = d3.max(data, d => d.count);
+    const minCount = d3.min(data, d => d.count);
 
     // SVG 요소를 초기화하고 새로운 차트를 그리기 전에 이전 차트를 제거
     const chartContainer = d3.select("#bubbleChart");
@@ -47,7 +71,7 @@ function drawBubbleChart(data) {
 
     node.append("circle")
         .attr("r", d => d.r)
-        .attr("fill", d => colorScale(d.data.month));
+        .attr("fill", d => colorScale(d.data.keyword, sortedData));
 
     node.append("text")
         .attr("dy", ".3em")
@@ -55,15 +79,10 @@ function drawBubbleChart(data) {
         .text(d => d.data.keyword);
 }
 
-function colorScale(month) {
-    // 월별 색상 지정
-    const colors = {
-        "10": "#ff9999",
-        "11": "#66b3ff",
-        "12": "#66b3ff",
-        // ... 다른 월에 대한 색상
-    };
-    return colors[month] || "#ffffff";
+function colorScale(keyword, sortedData) {
+	const itemData = sortedData.find(item => item.keyword === keyword);
+	//필요 없어 보?임
+    return itemData ? itemData.color : '#ffffff';
 }
 
 // 초기 데이터 로드
