@@ -16,4 +16,6 @@ public interface JournalService {
 
 	HashMap<String, Object> getJournalImpact(HashMap<String, Object> param);
 
+	List<HashMap<String, Object>> getChartData(HashMap<String, Object> param);
+
 }

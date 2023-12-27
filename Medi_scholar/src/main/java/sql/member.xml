@@ -14,7 +14,7 @@
 		         tun.sec_field as secField
     	FROM pubmed.tb_user_nt_01 tun
     	WHERE user_email = #{email}
-      	AND user_pass = pubmed.crypt(#{password}, '1111');
+      	AND user_pass = pubmed.crypt(#{pass}, user_pass);
 	<!-- jsp와 #{}안에 단어를 맞춰준다 -->
 	</select>
 	<!-- 구글이메일 회원디비 유무 체크 -->

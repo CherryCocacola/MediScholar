@@ -1,64 +1,70 @@
-//d3.js 라이브러리 사용
-//처음 페이지 접속 시 해당 달에 맞는 데이터로 버블 만들어서 보여줘야 함
-//월별 데이터 조회 시 그에 맞는 버블 형성해야 함
+function fetchChartData(selectedMonth) {
+    document.getElementById('selectedMonth').textContent = selectedMonth;
 
-function createBubbleChart() {
-    const width = 928;
-    const height = width;
-    const margin = 1;
-    const format = d3.format(",d");
-    const color = d3.scaleOrdinal(d3.schemeTableau10);
-    const pack = d3.pack()
-        .size([width - margin * 2, height - margin * 2])
-        .padding(3);
-
-    const root = pack(d3.hierarchy({children: data})
-        //.sum(d => d.value));
-        .sum(d => 200));
-
-    const svg = d3.select("#chart").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("viewBox", [-margin, -margin, width, height])
-        .attr("style", "max-width: 100%; height: auto; font: 10px sans-serif;")
-        .attr("text-anchor", "middle");
-
-    const node = svg.append("g")
-        .selectAll("g")
-        .data(root.leaves())
-        .join("g")
-            .attr("transform", d => `translate(${d.x},${d.y})`);
-
-    node.append("title")
-        .text(d => `${d.data.id}\n${format(d.value)}`);
-
-    node.append("circle")
-        .attr("fill-opacity", 0.7)
-        .attr("fill", d => color(d.data.id))
-        //.attr("r", d => d.r);
-        .attr("r", d => 80);
-
-    const text = node.append("text")
-        .attr("clip-path", d => `circle(${d.r})`);
-
-    text.selectAll("tspan")
-        .data(d => [d.data.id])
-        .join("tspan")
-            .attr("x", 0)
-            .attr("y", "0.7em")
-            .text(d => d);
-
-    return svg.node();
+    fetch('/journal/data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ month: selectedMonth })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        drawBubbleChart(data);
+    })
+    .catch(error => {
+        console.error('Error fetching data: ', error);
+    });
 }
 
-const data = {
-  children: [
-    { id: "bubble1", value: 500 },
-    { id: "bubble2", value: 300 },
-    { id: "bubble3", value: 200 },
-    // 추가 버블...
-  ]
-};
+function drawBubbleChart(data) {
+    const width = 800;
+    const height = 600;
+    const bubble = d3.pack().size([width, height]).padding(5);
 
-createBubbleChart(data);
+    // SVG 요소를 초기화하고 새로운 차트를 그리기 전에 이전 차트를 제거
+    const chartContainer = d3.select("#bubbleChart");
+    chartContainer.selectAll("svg").remove();
 
+    const svg = chartContainer.append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "bubble");
+
+    const nodes = d3.hierarchy({children: data}).sum(d => d.count);
+
+    const node = svg.selectAll(".node")
+        .data(bubble(nodes).leaves())
+        .enter()
+        .append("g")
+        .attr("class", "node")
+        .attr("transform", d => `translate(${d.x},${d.y})`);
+
+    node.append("circle")
+        .attr("r", d => d.r)
+        .attr("fill", d => colorScale(d.data.month));
+
+    node.append("text")
+        .attr("dy", ".3em")
+        .style("text-anchor", "middle")
+        .text(d => d.data.keyword);
+}
+
+function colorScale(month) {
+    // 월별 색상 지정
+    const colors = {
+        "10": "#ff9999",
+        "11": "#66b3ff",
+        "12": "#66b3ff",
+        // ... 다른 월에 대한 색상
+    };
+    return colors[month] || "#ffffff";
+}
+
+// 초기 데이터 로드
+fetchChartData(document.getElementById('monthSlider').value);
