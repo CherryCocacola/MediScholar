@@ -15,24 +15,26 @@
                 </div>
             </div>
 
-            <div class="con-search clear">
-                <form action="" method="get">
-                    <div class="con-search-form">
-                        <div class="clear">
-                            <select class="dominimal f-l">
-                                <option value="">Select Journal</option>
-                            </select>
-                            <label for="SearchInput"></label>
-                            <input type="text" id="SearchInput" name="sjournal" />
-                        </div>
-                    </div>
-                    <input type="submit" value="Search" class="btn-con-search" />
-                </form>
-            </div>
+			<div class="con-search clear">
+				<form action="" method="get">
+					<div class="con-search-form">
+						<div class="clear">
+							<select class="dominimal f-l" name="field">
+								<option ${param.field eq "title" ? "selected" : ""} value="title">Select Journal</option>
+								<option ${param.field eq "issn" ? "selected" : ""} value="issn">Select ISSN</option>
+							</select> <label for="SearchInput"></label>
+							<input type="text" id="SearchInput" name="sjournal" />
+						</div>
+					</div>
+					<input type="submit" name="" value="Search" class="btn-con-search" />
+				</form>
+			</div>
 
 			
             <div class="con-tbl">
-            <h3>Total : ${count}</h3>
+	            <div class="f-l">
+				Total : <strong>${count}</strong>
+				</div>
                 <div class="tbl-scr">
                     <table>
                     <thead>
@@ -100,8 +102,7 @@
 											<a href="#" class="active">${startNum+i}</a>
 										</c:when>
 										<c:otherwise>
-											<a
-												href="/journal/journallist?page=${startNum+i}&field=${param.field}&sjournal=${param.sjournal}">${startNum+i}</a>
+											<a href="/journal/journallist?page=${startNum+i}&field=${param.field}&sjournal=${param.sjournal}">${startNum+i}</a>
 										</c:otherwise>
 									</c:choose></li>
 							</c:forEach>

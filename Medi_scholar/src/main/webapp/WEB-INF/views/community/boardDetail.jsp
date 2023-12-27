@@ -3,10 +3,10 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- 영역 표시 내꺼 -->
    		<!-- 헤더 -->
     	<jsp:include page="../common/header.jsp" />
     	<script type="text/javascript" src=/resources/js/reply.js></script>
+        
         <section class="content">
 			
 			<!-- 테스트 -->
@@ -30,7 +30,7 @@
                             <div class="list-tit">${cd.title}</div>
                             <div class="list-writer">${cd.user_nm}</div>
                             <div class="list-etc">
-                                <span>Comment : <strong>${replyCount}</strong></span>
+                                <span>Comment : <strong>${rCount}</strong></span>
                                 <span class="sep">|</span>
                                 <span>Like : <strong>104</strong></span>
                                 <span class="sep">|</span>

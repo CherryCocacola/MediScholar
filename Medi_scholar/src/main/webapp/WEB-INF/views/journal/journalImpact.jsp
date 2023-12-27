@@ -5,7 +5,6 @@
 <!-- 헤더 -->
 <script type="text/javascript" src=/resources/js/impact.js></script>
 
-<section class="content">
 		<div id="impactTable">
 				<div class="tbl-scr">
                     <table class="ma-t-10">
@@ -33,4 +32,3 @@
                     </table>
                 </div>
 			</div>	
-</section>

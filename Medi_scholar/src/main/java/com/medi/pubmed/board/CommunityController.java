@@ -33,11 +33,7 @@ public class CommunityController {
 	//저널 목록 조회
 	@GetMapping("list")
 	public String getJournalList(@RequestParam HashMap<String, Object> param, HttpServletRequest req, ModelMap modelmap) {
-	
-			String page = req.getParameter("page");
-			if(page == null) {
-				page = "1";
-			}
+			
 			임시로그인(req);
 			HttpSession session = req.getSession();
 
@@ -51,32 +47,19 @@ public class CommunityController {
 			// Logger으로 출력 확인
 			logger.info("list param: " + String.valueOf(param));
 			
-			param.put("offset", (Integer.valueOf(page) - 1) * 10);
-
 			List<HashMap<String, Object>>jl = communitySvc.getCommunityList(param);
 			int totalCount = communitySvc.getCommunityCount(param);
-			int totalPages = totalCount / 10;
-			if (totalCount % 10 != 0) {
-			    totalPages++;
-			}
 			
 		    List<HashMap<String, Object>> replyWithList = new ArrayList<>();
-		    int count = communitySvc.getReplyCount(param);
-
+		    
 		    for (HashMap<String, Object> post : jl) {
-		    	
 		        HashMap<String, Object> postWithReplyCount = new HashMap<>(post);
 		        param.put("comm_postid", post.get("comm_postid"));
 		        int replyCount = communitySvc.getReplyCount(param);
 		        postWithReplyCount.put("replyCount", replyCount);
 		        replyWithList.add(postWithReplyCount);
 		    }
-			
-			modelmap.addAttribute("totalPages", totalPages);
 			modelmap.addAttribute("totalCount", totalCount);
-			modelmap.addAttribute("page", Integer.valueOf(page));
-			modelmap.addAttribute("replyCount", count);
-			
 			modelmap.addAttribute("cl", replyWithList);
 		
 		return ("community/boardList");
@@ -145,14 +128,13 @@ public class CommunityController {
 		            param.put("comm_postid", postIdInt);
 		        } catch (NumberFormatException e) {
 		            // postid 형변환 중 오류 발생시 처리
-		            System.err.println("Invalid postid format: " + comm_postid);
 		            modelMap.addAttribute("message", "잘못된 게시글 번호입니다.");
 		            return "redirect:list";
 		        }
 		    } else {
 		        // postid가 없는 경우 처리
-		        System.err.println("postid is missing");
 		        modelMap.addAttribute("message", "게시글 번호가 없습니다.");
+		        
 		        return "redirect:list";
 		    }
 		
@@ -206,6 +188,9 @@ public class CommunityController {
 		List<HashMap<String, Object>> replyList = communitySvc.getReplyList(paramForReply);
 		modelmap.addAttribute("rl", replyList);
 		
+		int rCount = communitySvc.getReplyCount(param);
+		modelmap.addAttribute("rCount", rCount);
+		
 		return "community/boardDetail";
 	}
 	
@@ -250,7 +235,6 @@ public class CommunityController {
 		response.put("message", "Reply deleted successfully");
 		
 		return response;
-		
 	}
 	
 	@ResponseBody
@@ -276,4 +260,5 @@ public class CommunityController {
 		communitySvc.delCommunity(id);
 		return ("redirect:list");
 	}
+	
 }
