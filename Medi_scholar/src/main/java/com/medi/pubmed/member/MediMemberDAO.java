@@ -65,10 +65,10 @@ public class MediMemberDAO {
 		return sqlSession.selectList("getpriList", param);
 	}
 
-	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getAdmin",param);
-	}
+//	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne("getAdmin",param);
+//	}
 
 	
 		

@@ -33,7 +33,7 @@ public interface MediMemberService {
 	List<HashMap<String, Object>> getsignList(String primary);
 	
 	//Admin 관리자 계정 추출
-	HashMap<String, Object> getAdmin(HashMap<String, Object> param);
+	//HashMap<String, Object> getAdmin(HashMap<String, Object> param);
 
 	
 	

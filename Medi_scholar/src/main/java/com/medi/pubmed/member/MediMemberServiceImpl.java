@@ -58,10 +58,10 @@ public class MediMemberServiceImpl implements MediMemberService{
 	public List<HashMap<String, Object>> getsignList(String primary) {
 		return medimemberdao.getsignList(primary);
 	}
-	@Override
-	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
-		return medimemberdao.getAdmin(param);
-	}
+//	@Override
+//	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
+//		return medimemberdao.getAdmin(param);
+//	}
 
 
 }

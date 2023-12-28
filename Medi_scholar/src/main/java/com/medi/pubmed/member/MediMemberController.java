@@ -42,7 +42,7 @@ public class MediMemberController {
 		logger.info("user_pass확인: "+ param.get("pass"));
 		// userinfo 받아와서 hashmap에 저장하기
 		HashMap<String, Object> user = medimembersvc.getUserInfo(param);
-		HashMap<String, Object> admin = medimembersvc.getAdmin(param);
+		//HashMap<String, Object> admin = medimembersvc.getAdmin(param);
 		
 		if(user != null) {
 			
@@ -54,13 +54,13 @@ public class MediMemberController {
 			logger.info("session Id : " + session.getAttribute("userEmail"));
 			logger.info("session Name : " + session.getAttribute("userNm"));
 			
-	
 		return "redirect:/journal/journallist";
+		
 	} else {
         // 로그인 실패 처리
         modelMap.addAttribute("errorMessage", "Email or Password를 확인해주세요");
         return "member/login"; 
-	}
+		}
 	}
 
 	// 로그아웃
