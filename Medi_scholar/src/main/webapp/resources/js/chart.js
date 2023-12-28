@@ -1,10 +1,10 @@
 // sort로 데이터를 내림차순 정렬 (기본 오름차순. b-a 시 내림차순)
 // 정렬한 키워드 데이터의 색상을 forEach문으로 정한다 
-function assignColorsToData(data) {
+function assignColors(data) {
     const sortedData = data.sort((a, b) => b.count - a.count);
     const colors = ["#E4CFE3",  "#CEDBED",  "#D4ECF0", "#DCFFDC", "#FDCAD6", "#FEDAD9"];
     
-    //상위 6개 키워드는 colors 색상을 적용
+    //상위 6개 키워드는 colors에 지정한 색상을 적용
     //그 아래는 회색으로 통일
     sortedData.forEach((item, index) => {
     	if(index<6) {
@@ -41,13 +41,13 @@ function fetchChartData(selectedMonth) {
 }
 
 function drawBubbleChart(data) {
-	const sortedData = assignColorsToData(data);
+	const sortedData = assignColors(data);
 
-    const width = 800;
+    const width = 500;
     const height = 600;
     const bubble = d3.pack().size([width, height]).padding(5);
     
-     // 'count' 값의 범위를 결정
+     //'count' 값의 범위를 결정
     const maxCount = d3.max(data, d => d.count);
     const minCount = d3.min(data, d => d.count);
 
@@ -59,21 +59,26 @@ function drawBubbleChart(data) {
         .attr("width", width)
         .attr("height", height)
         .attr("class", "bubble")
-		.style("border", "0.5px solid gray");
-		
-    const nodes = d3.hierarchy({children: data}).sum(d => d.count);
 
+    const nodes = d3.hierarchy({children: data}).sum(d => d.count);
+	
     const node = svg.selectAll(".node")
         .data(bubble(nodes).leaves())
         .enter()
         .append("g")
         .attr("class", "node")
-        .attr("transform", d => `translate(${d.x},${d.y})`);
+        .attr("transform", d => `translate(${d.x},${d.y})`)
+        
+        //버블 클릭 시 키워드명을 특정 div에 출력
+        .on("click", function(event, d) {
+        	document.getElementById("chartKeyword").textContent = d.data.keyword;
+        });
 
     node.append("circle")
         .attr("r", d => d.r)
         .attr("fill", d => colorScale(d.data.keyword, sortedData));
 
+	//키워드명 출력
     node.append("text")
         .attr("dy", ".3em")
         .style("text-anchor", "middle")
@@ -82,7 +87,8 @@ function drawBubbleChart(data) {
 
 function colorScale(keyword, sortedData) {
 	const itemData = sortedData.find(item => item.keyword === keyword);
-	//필요 없어 보?임
+	//itemData가 true면 color 리턴, false면 흰색 리턴
+	//=정렬된 데이터가 키워드와 이름이 같으면 색상 속성을, 그 외에는 흰색을 리턴한다
     return itemData ? itemData.color : '#ffffff';
 }
 
