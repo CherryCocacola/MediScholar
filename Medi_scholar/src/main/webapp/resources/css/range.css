@@ -1,0 +1,208 @@
+.range-slider {
+  width: 100%;
+  padding: 0 0 1.8rem 0;
+  position: relative;
+}
+
+.rs-range {
+  width: 500px;
+  height: 5px;
+  border-radius: 8px;
+  background: linear-gradient(to right, navy, navy 70%, #fff 100%, #fff 100%);
+  -webkit-appearance: none;
+}
+
+.rs-range:focus {
+  outline: none;
+}
+
+.rs-range::-webkit-slider-runnable-track, .rs-range::-moz-range-track {
+  width: 100%;
+  height: 0px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #ddd;
+  border-radius: 0px;
+}
+
+.rs-range::-webkit-slider-thumb, .rs-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--purple);
+  border: 0;
+  border-radius: 50%;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+
+.rs-range::-moz-focus-outer {
+  border: 0;
+}
+
+.rs-label {
+  position: absolute;
+  top: 26px;
+  display: block;
+  width: 60px;
+  height: 32px;
+  background: var(--purple);
+  border-radius: 100px;
+  line-height: 32px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: -30px;
+  left: 100%;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.btn-chart
+{margin: 0 auto;
+width:150px;height:40px;
+border-radius:0.5rem;background:rgb(18, 128, 238);
+border:none;color:#fff;cursor:pointer;font-size:1rem;}
+
+.chart-container {display: flex;}
+
+.chart1{flex:1; margin-right:10px;}
+.chart2{
+	flex:1;
+	margin-left:10px;
+	background-color: #ffffff;
+	background-color:rgba(0,0,0,0.1);
+	text-align:center; 
+	width:500px; height:600px;}
+	
+#chartSearch {
+    width: 100%; /* chartSearch의 너비를 부모 요소인 chart2의 너비에 맞춥니다. */
+    margin: 20px 0; /* 상하 여백을 추가합니다. */
+}
+	
+
+
+.keywordFont{font-size:50px; font-weight:bold; color:navy; text-align:center;}
+
+
+/* Keyword of the Month */
+#keywordMonth {
+}
+#keywordMonth .period-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 1rem 2.5rem;
+  border-top: 1px solid var(--border);
+}
+#keywordMonth .period-filter .icon {
+  flex: auto 0 0;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+#keywordMonth .period-filter .icon > * {
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: var(--purple2);
+}
+#keywordMonth .period-filter .icon > span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+#keywordMonth .form-group {
+  width: 100%;
+  flex: 1 1 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+#keywordMonth .form-group input {
+  /* flex: 1; */
+}
+#keywordMonth .form-group output {
+  font-weight: 500;
+  color: var(--purple2);
+  margin-left: 1rem;
+}
+#keywordMonth .filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#keywordMonth .keword-tab {
+  position: relative;
+}
+#keywordMonth .keword-tab .count {
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+}
+#keywordMonth .keword-tab + .tab-content {
+  border: 1px solid var(--border);
+  border-top: 0;
+}
+#keywordMonth .newsList.type02 {
+  padding: 0;
+}
+#keywordMonth .newsList.type02 li {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+#keywordMonth .newsList.type02 li:first-child {
+  border-top: 0;
+}
+.dictionary-wrap .summary {
+  padding: 1rem 1.5rem;
+  position: relative;
+}
+.dictionary-wrap .summary h5 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--point);
+}
+.dictionary-wrap .summary p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+.dictionary-wrap .tab-pane {
+  padding: 1rem 1.5rem;
+}
+.dictionary-wrap .tab-pane p {
+  font-weight: 400;
+  color: var(--gray);
+  margin: 0;
+}
+.dictionary-wrap #btn_modifyContents {
+  margin-left: 1.5rem;
+}
+.dictionary-wrap .filter {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.dictionary-wrap .filter * {
+  display: block;
+  font-size: 1rem;
+}
+.dictionary-wrap .subjectArea {
+  padding: 1rem 1.5rem;
+}
+.dictionary-wrap .subjectArea p {
+  color: var(--gray);
+  font-weight: 400;
+}
+.dictionary-wrap .chartArea_02 {
+  margin: 0 1.5rem 1rem;
+  min-height: 200px;
+  background: #f5f5f5;
+  color: var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+

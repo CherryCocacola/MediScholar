@@ -107,12 +107,7 @@ public class JournalServiceImpl implements JournalService {
 				new String[] { "surgery", "flu", "critical", "smoke", "Upset stomach", "research" }));
 		allData.addAll(createMonthlyData(9, new int[] { 500, 1000, 1500, 2000, 3000, 5000, 10000, 15000, 20000},
 				new String[] { "surgery", "flu", "critical", "smoke", "Upset stomach", "research", "nursing", "critical care", "medicine"}));
-			
-//		검색량 1000 단위
-//		if() {
-//			
-//		}
-		
+
 		// 선택된 월에 해당하는 데이터 필터링
 		List<HashMap<String, Object>> filteredData = new ArrayList<>();
 		for (HashMap<String, Object> data : allData) {

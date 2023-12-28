@@ -4,7 +4,7 @@ function updateJournalData() {
 
     fetch(`/journal/journaldetail?id=${journalId}&year=${selectedYear}`, {
         headers: {
-            'X-Requested-With': 'XMLHttpRequest'  // ajax 요청
+            'X-Requested-With': 'XMLHttpRequest'  // DOM 요소
         }
     })
     .then(response => response.text())
