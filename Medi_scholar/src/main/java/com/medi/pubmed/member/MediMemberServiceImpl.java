@@ -20,6 +20,7 @@ public class MediMemberServiceImpl implements MediMemberService{
 	//회원 정보 추가
 	@Override
 	public void insertUserInfo(HashMap<String, Object> param) {
+		medimemberdao.insertUserInfo2(param);
 		medimemberdao.insertUserInfo(param);
 	}
 	//구글 이메일 db 유무
@@ -56,6 +57,10 @@ public class MediMemberServiceImpl implements MediMemberService{
 	@Override
 	public List<HashMap<String, Object>> getsignList(String primary) {
 		return medimemberdao.getsignList(primary);
+	}
+	@Override
+	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
+		return medimemberdao.getAdmin(param);
 	}
 
 

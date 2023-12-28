@@ -35,6 +35,12 @@
 		INSERT INTO pubmed.tb_user_nt_01(user_email, user_nm, user_pass,user_hometown, user_job, pri_field, sec_field)
 		VALUES (#{userid}, #{usernm}, pubmed.crypt(#{userpw}, pubmed.gen_salt('bf')), #{nation},#{job}, #{major}, #{interest})
 	</insert>
+	
+	<insert id="insertUserInfo2" parameterType="java.util.HashMap">
+		INSERT INTO pubmed.tb_user_nt_02(user_email, user_auth)
+		select #{userid}, 'cd36'
+		from pubmed.tb_user_nt_01 as u01
+	</insert>
 
 	<select id="isUserIdDuplicate" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM pubmed.tb_user_nt_01 tun WHERE tun.user_email = #{userId}
@@ -67,4 +73,6 @@
 		from pubmed.tb_comm_ct_01 tcc 
 		where  tcc.parent_cd = 'cd28'
 	</select>
+	
+	
 </mapper>

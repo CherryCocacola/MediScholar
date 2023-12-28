@@ -42,7 +42,7 @@ public class MediMemberController {
 		logger.info("user_pass확인: "+ param.get("pass"));
 		// userinfo 받아와서 hashmap에 저장하기
 		HashMap<String, Object> user = medimembersvc.getUserInfo(param);
-		
+		HashMap<String, Object> admin = medimembersvc.getAdmin(param);
 		
 		if(user != null) {
 			

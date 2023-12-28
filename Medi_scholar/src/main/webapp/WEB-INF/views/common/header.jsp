@@ -40,7 +40,9 @@
 						   <li><a href="/member/signup">SignUp</a></li>
 					   <% } else { // 로그인이 된 경우 %>
 						   <li><a href="/member/logout">Logout</a></li>
-						   <li><a href="/member/Modify">Modify</a></li>
+						   <% if(email == "admin") { %>
+						   <li><a href="/member/admin">Admin</a></li> // admin으로 로그인 되는 경우
+						  <% } %>
 				       <% } %>
 	               </ul>
 	           </div>

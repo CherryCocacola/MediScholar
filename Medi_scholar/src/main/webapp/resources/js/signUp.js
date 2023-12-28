@@ -151,7 +151,8 @@ function fillSelectBox(iList) {
   
      function checkError() {
             // 에러 메시지 확인
-            let error = '<c:out value="${error}" />';
+            let
+             error = '<c:out value="${error}" />';
             
             // 에러 메시지가 비어있지 않으면 alert 창 표시
             if (error.trim() !== "") {

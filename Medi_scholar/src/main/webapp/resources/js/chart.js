@@ -58,8 +58,9 @@ function drawBubbleChart(data) {
     const svg = chartContainer.append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("class", "bubble");
-
+        .attr("class", "bubble")
+		.style("border", "0.5px solid gray");
+		
     const nodes = d3.hierarchy({children: data}).sum(d => d.count);
 
     const node = svg.selectAll(".node")
