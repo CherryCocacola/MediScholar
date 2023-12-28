@@ -3,38 +3,48 @@
 <mapper namespace="sql.journal">
 
 <select id="getJournalList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-    SELECT * FROM (
-        SELECT ROW_NUMBER() OVER() as num, n.*
-        	FROM (
-             SELECT tjn2.jour_fact_seq as jnlno,
-                   tjm.jour_nm as jnlnm,
-                   tjm.jour_id as jnlid,
-                   tjm.issn as issn,
-                   tjm.eissn as eissn,
-                   tjm.scie as scie,
-                   tjm.ssci as ssci,
-                   tjm.esci as esci,
-                   tjn2.jcr as jcr,
-                   tjn2.jci as jci
-             FROM pubmed.tb_jour_mt_01 tjm, pubmed.tb_jour_nt_02 tjn2, pubmed.tb_jour_nt_03 tjn3
-             WHERE tjm.jour_id = tjn2.jour_id
-            	and tjn2.jour_id = tjn3.jour_id
-            	and tjn2.scr_year = '2022'
-            <choose>
-                <when test="field =='title' and sjournal != null and sjournal != ''" >
-                    and tjm.jour_nm ilike concat('%', #{sjournal}, '%')
-                </when>
-                <when test="field =='issn' and sjournal != null and sjournal != ''" >
-                    and tjm.issn like concat('%', #{sjournal}, '%')
-                </when>
-                <otherwise></otherwise>
-            </choose>
-            ORDER BY jcr desc
-        ) n
-    ) as journal_list
-    <where>
-        num BETWEEN #{startPage} AND #{lastPage}
-    </where>
+	SELECT * 
+	  FROM (SELECT ROW_NUMBER() OVER() as num, n.*
+			  FROM (SELECT tjn2.jour_fact_seq as jnlno,
+						   tjm.jour_nm as jnlnm,
+						   tjm.jour_id as jnlid,
+						   tjm.issn as issn,
+						   tjm.eissn as eissn,
+						   tjm.scie as scie,
+						   tjm.ssci as ssci,
+						   tjm.esci as esci,
+						   tjn2.jcr as jcr,
+						   tjn2.jci as jci
+						   <if test="field =='title' and sjournal != null and sjournal != ''">
+								,pubmed.similarity(#{sjournal}, tjm.jour_nm) as similarity_score
+						   </if>
+					  FROM pubmed.tb_jour_mt_01 tjm
+					 INNER JOIN pubmed.tb_jour_nt_02 tjn2 ON tjm.jour_id = tjn2.jour_id
+					 INNER JOIN pubmed.tb_jour_nt_03 tjn3 ON tjn2.jour_id = tjn3.jour_id
+					<where>
+					   and tjn2.scr_year = '2022'
+					   <if test="field =='issn' and sjournal != null and sjournal != ''">
+							and  COALESCE(tjm.issn, tjm.eissn) = #{sjournal}
+					   </if>
+					</where>
+				 ) n
+				<if test="field =='title' and sjournal != null and sjournal != ''">
+			 		<where>
+			 			and similarity_score >=0.063 
+			 		</where> 
+			 	</if>
+			 ) as journal_list
+	<where>
+		and num BETWEEN #{startPage} AND #{lastPage}
+	</where>
+	<choose>
+		<when test="field =='title' and sjournal != null and sjournal != ''">
+			ORDER BY similarity_score DESC, jci DESC
+		</when>
+		<otherwise>
+			ORDER BY jcr desc, jci DESC
+		</otherwise>
+	</choose>
 </select>
 
 <select id="getJournalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
