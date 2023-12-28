@@ -39,6 +39,11 @@ public class MediMemberDAO {
 		return sqlSession.insert("insertUserInfo", param);
 
 	}
+	
+	// 사용자 권한 부여
+	public int insertUserInfo2(HashMap<String, Object> param) {
+		return sqlSession.insert("insertUserInfo2", param);
+	}
 
 	// 국가 선택지 리스트
 	public List<HashMap<String, Object>> getnation(HashMap<String, Object> param) {
@@ -59,6 +64,13 @@ public class MediMemberDAO {
 	public List<HashMap<String, Object>> getpriList(HashMap<String, Object> param) {
 		return sqlSession.selectList("getpriList", param);
 	}
+
+//	public HashMap<String, Object> getAdmin(HashMap<String, Object> param) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne("getAdmin",param);
+//	}
+
+	
 		
 
 

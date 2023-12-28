@@ -74,16 +74,16 @@ public class GoogleLoginController {
 				param.put("user_email", email);
 				HashMap<String, Object> user = medimembersvc.googleUserInfo(param);
 			
-				System.out.println("email :"+user.get("userId"));
-				System.out.println("name :"+user.get("userNm"));
+				System.out.println("email :"+user.get("userid"));
+				System.out.println("name :"+user.get("usernm"));
 				
 				// Call the method to check Google login in another controller
 				 if (user != null) {
 						HttpSession session = req.getSession();
 						
-						session.setAttribute("userEmail", user.get("userId"));
+						session.setAttribute("userEmail", user.get("userid"));
 						// user_email 을 userid라는 이름으로 저장한거임 , sql문에 userId인데 값이 userid로 찍히는 것은 카멜식 떄문이다 user_email _ 때문에 _사라지고 userId I 대문자가 i로 바뀐다.
-						session.setAttribute("userNm", user.get("userNm"));
+						session.setAttribute("userNm", user.get("usernm"));
 						
 				 	}
 				 		resp.sendRedirect("/journal/journallist");

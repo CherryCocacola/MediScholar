@@ -31,6 +31,9 @@ public interface MediMemberService {
 
 	// 세부 분야 목록 조회
 	List<HashMap<String, Object>> getsignList(String primary);
+	
+	//Admin 관리자 계정 추출
+	//HashMap<String, Object> getAdmin(HashMap<String, Object> param);
 
 	
 	

@@ -51,7 +51,7 @@
 						<% } %>
 						
                         <input class="btn btn-1 ma-t-15 ma-b-10" type="submit" value="LOGIN" tabindex="3" />
-						<div class="error-message">${error}</div>
+					
 					</form>
                     <p class="a-c">
                         Don't have an account? 
