@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.medi.base.service.BaseJournalService;
 import com.medi.base.service.XlsxService;
 
-@RequestMapping("/base/*")
+@RequestMapping("/pubmed/base/*")
 
 @Controller
 public class BaseController {

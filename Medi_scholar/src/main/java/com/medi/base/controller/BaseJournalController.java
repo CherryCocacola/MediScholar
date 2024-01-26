@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.medi.base.service.BaseJournalService;
 import com.medi.base.vo.JournalVO;
 
-@RequestMapping("/base/*")
+@RequestMapping("/pubmed/base/*")
 
 @Controller
 public class BaseJournalController {

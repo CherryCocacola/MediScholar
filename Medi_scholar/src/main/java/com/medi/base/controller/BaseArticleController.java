@@ -21,7 +21,7 @@ import com.medi.base.service.BaseJournalService;
 import com.medi.base.vo.ArticleVO;
 import com.medi.base.vo.PmidVO;
 
-@RequestMapping("/base/*")
+@RequestMapping("/pubmed/base/*")
 
 @Controller
 public class BaseArticleController {

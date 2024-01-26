@@ -7,7 +7,7 @@
 		insert into pubmed.journal_impact(journal_nm,issn,eissn) values (#{journal_nm},#{issn},#{eissn})
 	</insert>
 	
-	<select id ="getData" resultType="com.medi.base.XlsxData">
+	<select id ="getData" resultType="com.medi.base.vo.XlsxData">
 		select issn,eissn from pubmed.journal_impact order by id asc
 	</select>
 	
